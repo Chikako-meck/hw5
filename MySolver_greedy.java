@@ -2,7 +2,7 @@ import java.lang.*;
 import java.io.*;
 import java.util.*;
 
-public class MySolver{
+public class MySolver_greedy{
     
     static float distance(float city1[], float city2[]){
 	float x = Math.abs(city1[0] - city2[0]);
@@ -61,6 +61,7 @@ public class MySolver{
 	assert args.length > 1;
 	ArrayList<Integer> solution = solve(Common.read_input(args[0]));
 	Common.print_solution(solution);
+	Common.overwrite_solution(solution, args[1]);
     }
 	    
 }
