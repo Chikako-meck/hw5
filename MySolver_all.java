@@ -71,8 +71,6 @@ public class MySolver_all{
 	ArrayList<Float> distances = new ArrayList<Float>();
 	ArrayList<ArrayList<Integer>> permutated_list
 	    = make_permutation(unvisited_cities);
-	//	ArrayList<ArrayList<Integer>> buffer_list
-	//  = make_permutatio
 	int list_n = permutated_list.size();
 
 	for(int i=0; i<list_n; i++){

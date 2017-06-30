@@ -59,11 +59,11 @@ public class MySolver_divide{
 	    City city = new City(x, y);
 	    buffer_cities.add(city);
 	}
-	if((max_x - min_x) > (max_y - min_y))
-	    Collections.sort(buffer_cities, new CityComparator_X());
-	else
+	if((max_x - min_x) > (max_y - min_y)){
+	   Collections.sort(buffer_cities, new CityComparator_X());
+	}else{
 	    Collections.sort(buffer_cities, new CityComparator_Y());
-	
+	}
 	ArrayList<float[]> sorted_cities = new ArrayList<float[]>(); 
 	for(int i=0; i<buffer_cities.size(); i++){
 	    float x = buffer_cities.get(i).x;
@@ -90,32 +90,34 @@ public class MySolver_divide{
 	ArrayList<Integer> index_of_sorted_cities = new ArrayList<Integer>();
 	ArrayList<Float> x_of_cities = new ArrayList<Float>();
 
-	for(int i=0; i<sorted_position.size(); i++){
-	    x_of_cities.add(sorted_position.get(i)[0]);
+	for(int i=0; i<cities.size(); i++){
+	    x_of_cities.add(cities.get(i)[0]);
 	}
-	
+
 	for(int i=0; i<sorted_position.size(); i++){
 	    int index = x_of_cities.indexOf(sorted_position.get(i)[0]);
-	    index_of_sorted_cities.add(index_of_cities.get(index));
+	    index_of_sorted_cities.add(index);
 	}
 	
 	
 	if(index_of_cities.size() <= 5){
 	    divided_cities.add(index_of_cities);
+	    System.out.println(index_of_cities);
 	}else{
 	    int middle = index_of_cities.size()/2 + 1;
 	    ArrayList<Integer> left_cities = new ArrayList<Integer>();
 	    ArrayList<Integer> right_cities = new ArrayList<Integer>();
 	    for(int i=0; i<middle; i++){
-		int index = index_of_cities.get(i);
+		int index = index_of_sorted_cities.get(i);
 		left_cities.add(index);
 	    }
 	    for(int i=middle-1; i<index_of_cities.size(); i++){
-		int index = index_of_cities.get(i);
+		int index = index_of_sorted_cities.get(i);
 		right_cities.add(index);
 	    }
 	    divide(cities, left_cities, divided_cities);
-	    divide(cities, right_cities, divided_cities); 
+	    divide(cities, right_cities, divided_cities);
+    
 	}
 	return divided_cities;
     }
@@ -256,8 +258,7 @@ public class MySolver_divide{
 		= solve_all_permutation(divided_cities_index.get(i), cities);
 	    divided_solutions.add(divided_solution);
 	}
-	System.out.println(divided_solutions);
-	System.out.println(common_points);
+
 	ArrayList<Integer> solution
 	    = (integrate(divided_solutions, cities, common_points)).get(0);
 	return solution;
